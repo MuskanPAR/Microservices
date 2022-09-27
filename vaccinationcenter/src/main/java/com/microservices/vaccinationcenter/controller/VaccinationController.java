@@ -5,7 +5,6 @@ import com.microservices.vaccinationcenter.repository.VaccinationCenterRepo;
 import com.microservices.vaccinationcenter.responsemodal.Citizen;
 import com.microservices.vaccinationcenter.responsemodal.Response;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
-import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -39,6 +38,7 @@ public class VaccinationController {
         vaccinationCenterRepo.save(vaccinationCenter);
         return new ResponseEntity<>(vaccinationCenter, HttpStatus.OK);
     }
+
 
     @GetMapping(path = "/vaccinationCenterId/{vaccinationCenterId}")
     @HystrixCommand(fallbackMethod = "handleClientServiceDown")       //hystrix command not preferred
