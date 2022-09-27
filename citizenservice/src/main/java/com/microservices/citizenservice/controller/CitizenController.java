@@ -46,5 +46,4 @@ public class CitizenController {
         return new ResponseEntity<>(citizen,HttpStatus.OK);
     }
 
-
 }
